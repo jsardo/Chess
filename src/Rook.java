@@ -5,10 +5,7 @@ public class Rook extends Piece
 {
     public Rook(int square)
     {
-        super(square);
-        setAttacking();
+        super(square, PieceType.ROOK);
     }
-
-    void setAttacking() { }
 
 }
