@@ -9,15 +9,18 @@ public class Chess
 {
     public static void main(String[] args)
     {
-        twoPlayerGame();
+        FEN.initBoardFromFEN("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR");
+        Board.printBoard();
     }
 
     public void initalizeDefaultBoard()
     {
 
     }
+    /*
     public void twoPlayerGame()
     {
         intializeDefaultBoard();
     }
+    */
 }

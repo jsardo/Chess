@@ -2,5 +2,10 @@
  * Created by johnsardo on 2016-04-15.
  */
 public enum PieceType {
-    PAWN, ROOK, KNIGHT, BISHOP, KING, QUEEN
+    PAWN("P"), ROOK("R"), KNIGHT("N"), BISHOP("B"), KING("K"), QUEEN("Q"), EMPTY(" ");
+
+    private String pieceStr;
+    PieceType(String pieceStr) { this.pieceStr = pieceStr; }
+
+    public String getPieceString() { return pieceStr; }
 }

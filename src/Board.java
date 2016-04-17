@@ -27,6 +27,17 @@ public class Board
         }
     }
 
+    public static void printBoard()
+    {
+        for (int i = 63; i >= 0; ++i) {
+            if (i != 63 && (i + 1) % 8 == 0) {
+                System.out.println();
+            } else {
+                System.out.print(getSquare(i).getPieceType().getPieceString());
+            }
+        }
+    }
+
     public static Piece pieceAtSquare(int s)
     {
         if (isValid(s)) {
