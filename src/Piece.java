@@ -8,6 +8,7 @@ public class Piece {
     private ArrayList<Piece> attacking;
     private PieceType type;
     private Colour colour;
+    private String abbrev;
 
     public Piece() { }
     public Piece(int square, PieceType t, Colour c)
@@ -15,12 +16,12 @@ public class Piece {
         this.square = square;
         this.type = t;
         this.colour = c;
+        this.abbrev = (c == Colour.WHITE) ? type.getPieceString() : type.getPieceString().toLowerCase();
     }
 
     public int getSquare() { return square; }
-
+    public String getAbbrev() { return abbrev; }
     public PieceType getPieceType() { return type; }
-
     public Colour getColour() { return colour; }
 
     //abstract void setAttacking();

@@ -23,18 +23,25 @@ public class Board
         }
         else { // TODO: make this legit
             System.out.println("error: trying to access an invalid board location");
+            System.exit(0);
             return null;
         }
     }
 
     public static void printBoard()
     {
-        for (int i = 63; i >= 0; ++i) {
-            if (i != 63 && (i + 1) % 8 == 0) {
-                System.out.println();
-            } else {
-                System.out.print(getSquare(i).getPieceType().getPieceString());
+        for (int i = 7; i >= 0; --i) {
+            System.out.print("|");
+            for (int j = 0; j < 8; ++j) {
+                System.out.print(getSquare(i*8 + j).getAbbrev());
+                System.out.print("|");
             }
+            System.out.println();
+            System.out.print("|-");
+            for (int k = 1; k < 8; ++k) {
+                System.out.print("--");
+            }
+            System.out.println("|");
         }
     }
 

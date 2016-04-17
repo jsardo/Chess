@@ -8,6 +8,7 @@ public class Test {
         System.out.println(Character.getNumericValue('3'));
         TestEnum foo = TestEnum.FOO;
         System.out.println(foo.getAbbreviation());
+        System.out.println(foo.getAbbreviation().toLowerCase());
     }
 }
 

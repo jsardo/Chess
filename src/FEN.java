@@ -2,6 +2,12 @@
  * Created by johnsardo on 2016-04-15.
  */
 // rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR
+/*
+// |rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR
+counter = 0
+index = 0
+ */
+
 public class FEN
 {
     public static void initBoardFromFEN(String fen)
@@ -25,6 +31,12 @@ public class FEN
             } else {
                 addToBoardByChar(current, counter);
                 counter++;
+                if (current == '/') counter--;
+                /*
+                if (current != '/' && !('1' <= current && current <= '8'))
+                    System.out.println("added fen["+index+"]=" + current + " to square " + (counter - 1) + ". ");
+                */
+
             }
             index++;
         }
@@ -51,12 +63,16 @@ public class FEN
             case 'k':
                 Board.setSquare(count, new King(count, c));
                 break;
+            case 'p':
+                Board.setSquare(count, new Pawn(count, c));
+                break;
             case '/':
                 // TODO: make better
-                if ((count + 1) % 8 != 0) {
+                if ((count + 0) % 8 != 0) {
                     System.out.println("error: unexpected \'/\' in your FEN file");
                     System.exit(0);
                 }
+                break;
             default:
                 // TODO: make this better
                 System.out.println("error: the character " + piece + " is in the FEN but it shouldn't be");
