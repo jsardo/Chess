@@ -3,8 +3,8 @@
  */
 public class King extends Piece
 {
-    public King(int square)
+    public King(int square, Colour c)
     {
-        super(square, PieceType.KING);
+        super(square, PieceType.KING, c);
     }
 }

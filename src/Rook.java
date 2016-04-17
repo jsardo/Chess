@@ -3,9 +3,9 @@
  */
 public class Rook extends Piece
 {
-    public Rook(int square)
+    public Rook(int square, Colour c)
     {
-        super(square, PieceType.ROOK);
+        super(square, PieceType.ROOK, c);
     }
 
 }
