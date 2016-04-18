@@ -28,6 +28,11 @@ public class Board
         }
     }
 
+    public static boolean isEmptySquare(int square)
+    {
+        return getSquare(square).getPieceType() == PieceType.EMPTY;
+    }
+
     public static void printBoard()
     {
         for (int i = 7; i >= 0; --i) {

@@ -9,18 +9,17 @@ public class Chess
 {
     public static void main(String[] args)
     {
-        FEN.initBoardFromFEN("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR");
+
+        twoPlayerGame();
         Board.printBoard();
     }
 
-    public void initalizeDefaultBoard()
+    public static void initDefaultBoard()
     {
-
+        FEN.initBoardFromFEN("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR");
     }
-    /*
-    public void twoPlayerGame()
+    public static void twoPlayerGame()
     {
-        intializeDefaultBoard();
+        initDefaultBoard();
     }
-    */
 }

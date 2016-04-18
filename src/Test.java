@@ -4,11 +4,7 @@
 public class Test {
     public static void main(String[] args)
     {
-        System.out.println('a' <= 'b');
-        System.out.println(Character.getNumericValue('3'));
-        TestEnum foo = TestEnum.FOO;
-        System.out.println(foo.getAbbreviation());
-        System.out.println(foo.getAbbreviation().toLowerCase());
+        System.out.println((35/8)*8 );
     }
 }
 
