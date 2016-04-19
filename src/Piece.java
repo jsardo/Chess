@@ -3,7 +3,7 @@ import java.util.ArrayList;
 /**
  * Created by johnsardo on 2016-04-15.
  */
-public class Piece {
+public abstract class Piece {
     private int square;
     private ArrayList<Piece> attacking;
     private PieceType type;
@@ -24,7 +24,7 @@ public class Piece {
     public PieceType getPieceType() { return type; }
     public Colour getColour() { return colour; }
 
-    //abstract void setAttacking();
+    public abstract ArrayList<Integer> getPossibleSquares();
 }
 
 

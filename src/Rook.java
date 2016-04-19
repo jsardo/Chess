@@ -43,10 +43,15 @@ public class Rook extends Piece
             }
             currentSquare++;
         }
-        currentSquare =
-
-
-
+        currentSquare = getSquare() - 1;
+        while (currentSquare >= lower) {
+            if (Board.isEmptySquare(currentSquare)) {
+                possibleSquares.add(currentSquare);
+            } else {
+                break;
+            }
+            currentSquare--;
+        }
 
         return possibleSquares;
     }
