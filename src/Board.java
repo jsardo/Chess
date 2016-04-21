@@ -30,8 +30,51 @@ public class Board
 
     public static boolean isEmptySquare(int square)
     {
-        return getSquare(square).getPieceType() == PieceType.EMPTY;
+        return (isValid(square) && (getSquare(square).getPieceType() == PieceType.EMPTY));
     }
+
+
+    /*
+    public static Piece pieceAtSquare(int s)
+    {
+        if (isValid(s)) {
+            return board[s];
+        } else {
+            System.out.println("error: accessing invalid board location");
+            return null;
+        }
+    }
+    */
+
+    public static void setSquare(int s, Piece p)
+    {
+        if (isValid(s) && getSquare(s) == null) {
+            board[s] = p;
+        } else {
+            // do something
+        }
+    }
+
+    /*
+    return true if the square is nonempty or occupied by a piece of the opposite colour; false otherwise
+     */
+    public static boolean pieceCanMove(int square, Colour c)
+    {
+        return isValid(square) && (isEmptySquare(square) || getSquare(square).getColour() != c);
+    }
+
+
+    public static boolean addIfNonEmpty(int square, Piece p)
+    {
+        if (getSquare(square).getPieceType() == PieceType.EMPTY) {
+            setSquare(square, p);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private static boolean isValid(int s) { return (0 <= s && s < 64); }
 
     public static void printBoard()
     {
@@ -48,25 +91,4 @@ public class Board
         }
         System.out.println("   a b c d e f g h");
     }
-
-    public static Piece pieceAtSquare(int s)
-    {
-        if (isValid(s)) {
-            return board[s];
-        } else {
-            System.out.println("error: accessing invalid board location");
-            return null;
-        }
-    }
-
-    public static void setSquare(int s, Piece p)
-    {
-        if (isValid(s) && pieceAtSquare(s) == null) {
-            board[s] = p;
-        } else {
-            // do something
-        }
-    }
-
-    private static boolean isValid(int s) { return (0 <= s && s < 64); }
 }

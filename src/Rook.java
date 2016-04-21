@@ -14,39 +14,62 @@ public class Rook extends Piece
     public ArrayList<Integer> getPossibleSquares()
     {
         ArrayList<Integer> possibleSquares = new ArrayList<>();
-        int currentSquare = getSquare() + 8;
+        int currentSquare = getSquare();
+        Colour c = getColour();
 
+        currentSquare += 8;
         while (currentSquare < 64) {
-            if (Board.isEmptySquare(currentSquare)) {
-                possibleSquares.add(currentSquare);
+            if (Board.pieceCanMove(currentSquare, c)) {
+                if (Board.isEmptySquare(currentSquare)) {
+                    possibleSquares.add(currentSquare);
+                } else {
+                    possibleSquares.add(currentSquare);
+                    break;
+                }
             } else {
-                break; // can break because if one square is blocked then all others above are blocked.
+                break;
             }
             currentSquare += 8; // adding 8 moves up one row in this board representation.
         }
+
         currentSquare = getSquare() - 8;
         while (currentSquare >= 0) {
-            if (Board.isEmptySquare(currentSquare)) {
-                possibleSquares.add(currentSquare);
+            if (Board.pieceCanMove(currentSquare, c)) {
+                if (Board.isEmptySquare(currentSquare)) {
+                    possibleSquares.add(currentSquare);
+                } else {
+                    possibleSquares.add(currentSquare);
+                    break;
+                }
             } else {
                 break;
             }
             currentSquare -= 8;
         }
-        int lower = (currentSquare/8)*8, upper = lower + 8;
-        currentSquare = getSquare() + 1;
+        int lower = (getSquare()/8)*8, upper = lower + 8;
+        currentSquare = getSquare()+1;
         while (currentSquare < upper) {
-            if (Board.isEmptySquare(currentSquare)) {
-                possibleSquares.add(currentSquare);
+            if (Board.pieceCanMove(currentSquare, c)) {
+                if (Board.isEmptySquare(currentSquare)) {
+                    possibleSquares.add(currentSquare);
+                } else {
+                    possibleSquares.add(currentSquare);
+                    break;
+                }
             } else {
                 break;
             }
             currentSquare++;
         }
-        currentSquare = getSquare() - 1;
+        currentSquare = getSquare()-1;
         while (currentSquare >= lower) {
-            if (Board.isEmptySquare(currentSquare)) {
-                possibleSquares.add(currentSquare);
+            if (Board.pieceCanMove(currentSquare, c)) {
+                if (Board.isEmptySquare(currentSquare)) {
+                    possibleSquares.add(currentSquare);
+                } else {
+                    possibleSquares.add(currentSquare);
+                    break;
+                }
             } else {
                 break;
             }
@@ -55,5 +78,4 @@ public class Rook extends Piece
 
         return possibleSquares;
     }
-
 }

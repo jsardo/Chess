@@ -9,5 +9,11 @@ public class Queen extends Piece
     {
         super(square, PieceType.QUEEN, c);
     }
-    public ArrayList<Integer> getPossibleSquares() { return null; } // TODO: implement
+    public ArrayList<Integer> getPossibleSquares()
+    {
+        // oop is pretty nice sometimes
+        (new Rook(getSquare(), null)).getPossibleSquares();
+        (new Bishop(getSquare(), null)).getPossibleSquares();
+        return null;
+    } // TODO: implement
 }

@@ -24,12 +24,18 @@ public class Chess
         twoPlayerGame();
         Board.printBoard();
         */
-        FEN.initBoardFromFEN("8/8/4R3/8/8/8/8/8");
+        FEN.initBoardFromFEN("8/8/8/rR6/8/8/8/8");
         for (int i = 0; i < 64; ++i) {
             if (!Board.isEmptySquare(i)) {
                 System.out.println(i);
             }
         }
+        /*
+        System.out.println(Board.pieceCanMove(25, Board.getSquare(24).getColour()));
+        System.out.println(Board.getSquare(24).getColour());
+        System.out.println(Board.getSquare(25).getColour());
+        */
+        System.out.println(Board.getSquare(24).getPossibleSquares().toString());
 
     }
 
