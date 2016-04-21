@@ -4,7 +4,10 @@
 public class Test {
     public static void main(String[] args)
     {
-        System.out.println((35/8)*8 );
+        int[] test = {0,2,3};
+        for (int i : test) {
+            System.out.println(i);
+        }
     }
 }
 

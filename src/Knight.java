@@ -13,13 +13,31 @@ public class Knight extends Piece
     public ArrayList<Integer> getPossibleSquares()
     {
         ArrayList<Integer> squares = new ArrayList<>();
-        int[] knightSquareIncrements = {-17, -15, -10, -6, 6, 10, 15, 17};
+        ArrayList<Integer> potential = new ArrayList<>();
 
-        int lower = (getSquare()/8)*8, upper = lower + 8, current;
-        for (int inc : knightSquareIncrements) {
-            current = getSquare() + inc;
-
+        if (getSquare() % 8 >= 2) {
+            potential.add(getSquare() + 6);
+            potential.add(getSquare() - 10);
         }
+        if (getSquare() % 8 >= 1) {
+            potential.add(getSquare() + 15);
+            potential.add(getSquare() - 17);
+        }
+        if (getSquare() % 8 <= 5) {
+            potential.add(getSquare() + 10);
+            potential.add(getSquare() - 6);
+        }
+        if (getSquare() % 8 <= 6) {
+            potential.add(getSquare() + 17);
+            potential.add(getSquare() - 15);
+        }
+
+        for (int sq : potential) {
+            if (Board.pieceCanMove(sq, getColour())) {
+                squares.add(sq);
+            }
+        }
+
         return squares;
     }
 }

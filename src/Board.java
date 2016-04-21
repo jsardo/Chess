@@ -48,10 +48,12 @@ public class Board
 
     public static void setSquare(int s, Piece p)
     {
-        if (isValid(s) && getSquare(s) == null) {
+        //if (isValid(s) && (getSquare(s) == null) {
+        if (isValid(s)) {
             board[s] = p;
         } else {
-            // do something
+            System.out.println("error: in setSquare(): invalid square");
+            System.exit(0);
         }
     }
 

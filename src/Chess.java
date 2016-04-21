@@ -24,10 +24,14 @@ public class Chess
         twoPlayerGame();
         Board.printBoard();
         */
-        FEN.initBoardFromFEN("8/8/8/rR6/8/8/8/8");
+        FEN.initBoardFromFEN("8/8/8/8/8/8/8/8");
+        Board.setSquare(36, new Knight(36, Colour.WHITE));
+        Board.setSquare(42, new Knight(42, Colour.BLACK));
+        Board.printBoard();
         for (int i = 0; i < 64; ++i) {
             if (!Board.isEmptySquare(i)) {
                 System.out.println(i);
+                System.out.println(Board.getSquare(i).getPossibleSquares().toString());
             }
         }
         /*
@@ -35,7 +39,7 @@ public class Chess
         System.out.println(Board.getSquare(24).getColour());
         System.out.println(Board.getSquare(25).getColour());
         */
-        System.out.println(Board.getSquare(24).getPossibleSquares().toString());
+
 
     }
 
