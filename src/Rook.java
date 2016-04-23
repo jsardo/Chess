@@ -17,6 +17,7 @@ public class Rook extends Piece
         int currentSquare = getSquare();
         Colour c = getColour();
 
+        // TODO: make those loops like those Bishop.java because i'm stupid
         currentSquare += 8;
         while (currentSquare < 64) {
             if (Board.pieceCanMove(currentSquare, c)) {
