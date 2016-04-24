@@ -76,7 +76,7 @@ public class Board
         }
     }
 
-    private static boolean isValid(int s) { return (0 <= s && s < 64); }
+    public static boolean isValid(int s) { return (0 <= s && s < 64); }
 
     public static void printBoard()
     {

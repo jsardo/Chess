@@ -1,13 +1,3 @@
-/**
- * Created by johnsardo on 2016-04-15.
- */
-// rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR
-/*
-// |rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR
-counter = 0
-index = 0
- */
-
 public class FEN
 {
     public static void initBoardFromFEN(String fen)
@@ -32,11 +22,6 @@ public class FEN
                 addToBoardByChar(current, counter);
                 counter++;
                 if (current == '/') counter--;
-                /*
-                if (current != '/' && !('1' <= current && current <= '8'))
-                    System.out.println("added fen["+index+"]=" + current + " to square " + (counter - 1) + ". ");
-                */
-
             }
             index++;
         }
