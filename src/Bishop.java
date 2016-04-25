@@ -1,6 +1,3 @@
-/**
- * Created by johnsardo on 2016-04-15.
- */
 import java.util.ArrayList;
 
 public class Bishop extends Piece
@@ -21,7 +18,7 @@ public class Bishop extends Piece
             if (Board.isEmptySquare(currentSquare + 9)) {
                 possibleSquares.add(currentSquare+9);
             } else {
-                possibleSquares.add(currentSquare);
+                possibleSquares.add(currentSquare+9);
                 break;
             }
             currentSquare += 9;
@@ -33,7 +30,7 @@ public class Bishop extends Piece
             if (Board.isEmptySquare(currentSquare + 7)) {
                 possibleSquares.add(currentSquare + 7);
             } else {
-                possibleSquares.add(currentSquare);
+                possibleSquares.add(currentSquare+7);
                 break;
             }
             currentSquare += 7;
@@ -45,7 +42,7 @@ public class Bishop extends Piece
             if (Board.isEmptySquare(currentSquare - 9)) {
                 possibleSquares.add(currentSquare - 9);
             } else {
-                possibleSquares.add(currentSquare);
+                possibleSquares.add(currentSquare-9);
                 break;
             }
             currentSquare -= 9;
@@ -57,7 +54,7 @@ public class Bishop extends Piece
             if (Board.isEmptySquare(currentSquare - 7)) {
                 possibleSquares.add(currentSquare - 7);
             } else {
-                possibleSquares.add(currentSquare);
+                possibleSquares.add(currentSquare-7);
                 break;
             }
             currentSquare -= 7;

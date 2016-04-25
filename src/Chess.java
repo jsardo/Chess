@@ -20,17 +20,18 @@ public class Chess
         twoPlayerGame();
         Board.printBoard();
         */
-        FEN.initBoardFromFEN("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR");
-        //Board.setSquare(36, new Bishop(36, Colour.WHITE));
-        //Board.setSquare(42, new Knight(42, Colour.BLACK));
-        Board.setSquare(20, new Rook(20, Colour.WHITE));
-        Board.setSquare(19, new Rook(19, Colour.BLACK));
-        Board.setSquare(21, new Rook(21, Colour.BLACK));
-        //Board.setSquare
-        Board.setSquare(36, new Rook(36, Colour.WHITE));
-        Board.setSquare(43, new Rook(43, Colour.BLACK));
-        Board.setSquare(45, new Rook(45, Colour.WHITE));
-        Board.printBoard();
+        //FEN.initBoardFromFEN("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR");
+        FEN.initBoardFromFEN("8/8/8/8/8/8/8/8");
+        Board.setSquare(36, new Queen(36, Colour.WHITE));
+
+        Board.setSquare(44, new Pawn(44, Colour.WHITE));
+        Board.setSquare(45, new Pawn(45, Colour.BLACK));
+        Board.setSquare(43, new Pawn(37, Colour.WHITE));
+        Board.setSquare(35, new Pawn(35, Colour.WHITE));
+        Board.setSquare(27, new Pawn(27, Colour.WHITE));
+        Board.setSquare(28, new Pawn(28, Colour.WHITE));
+        Board.setSquare(29, new Pawn(29, Colour.WHITE));
+        /*
         /*
         for (int i = 0; i < 64; ++i) {
             if (!Board.isEmptySquare(i)) {
@@ -39,7 +40,9 @@ public class Chess
             }
         }
         */
-        System.out.println(Board.getSquare(52).getPossibleSquares().toString());
+        Board.printBoard();
+        System.out.println(Board.getSquare(36).getPossibleSquares().toString());
+        //System.out.println(Board.getSquare(52).getPossibleSquares().toString());
         /*
         System.out.println(Board.pieceCanMove(25, Board.getSquare(24).getColour()));
         System.out.println(Board.getSquare(24).getColour());
