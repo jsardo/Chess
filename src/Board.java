@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * Created by johnsardo on 2016-04-15.
  */
@@ -15,6 +17,9 @@
 public class Board
 {
     private static Piece[] board = new Piece[64];
+
+    public static ArrayList<Piece> whitePieces = new ArrayList<>();
+    public static ArrayList<Piece> blackPieces = new ArrayList<>();
 
     public static Piece getSquare(int square)
     {
@@ -34,23 +39,24 @@ public class Board
     }
 
 
-    /*
-    public static Piece pieceAtSquare(int s)
-    {
-        if (isValid(s)) {
-            return board[s];
-        } else {
-            System.out.println("error: accessing invalid board location");
-            return null;
-        }
-    }
-    */
-
     public static void setSquare(int s, Piece p)
     {
-        //if (isValid(s) && (getSquare(s) == null) {
+        Piece pieceAtSquare;
         if (isValid(s)) {
+            pieceAtSquare = getSquare(s);
+            if (pieceAtSquare != null && !isEmptySquare(s)) {
+                if (pieceAtSquare.getColour() == Colour.WHITE) {
+                    whitePieces.remove(pieceAtSquare);
+                } else if (pieceAtSquare.getColour() == Colour.BLACK) {
+                    blackPieces.remove(pieceAtSquare);
+                }
+            }
             board[s] = p;
+            if (p.getColour() == Colour.WHITE) {
+                whitePieces.add(p);
+            } else if (p.getColour() == Colour.BLACK) {
+                blackPieces.add(p);
+            }
         } else {
             System.out.println("error: in setSquare(): invalid square");
             System.exit(0);
@@ -65,16 +71,14 @@ public class Board
         return isValid(square) && (isEmptySquare(square) || getSquare(square).getColour() != c);
     }
 
-
-    public static boolean addIfNonEmpty(int square, Piece p)
+    // TODO: implement
+    // return true if c is in check; false otherwise
+    /*
+    public static boolean positionIsInCheck(Colour c)
     {
-        if (getSquare(square).getPieceType() == PieceType.EMPTY) {
-            setSquare(square, p);
-            return true;
-        } else {
-            return false;
-        }
+        boolean inCheck = false;
     }
+    */
 
     public static boolean isValid(int s) { return (0 <= s && s < 64); }
 

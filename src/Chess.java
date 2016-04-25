@@ -26,11 +26,12 @@ public class Chess
 
         Board.setSquare(44, new Pawn(44, Colour.WHITE));
         Board.setSquare(45, new Pawn(45, Colour.BLACK));
-        Board.setSquare(43, new Pawn(37, Colour.WHITE));
+        Board.setSquare(43, new Pawn(43, Colour.WHITE));
         Board.setSquare(35, new Pawn(35, Colour.WHITE));
         Board.setSquare(27, new Pawn(27, Colour.WHITE));
         Board.setSquare(28, new Pawn(28, Colour.WHITE));
         Board.setSquare(29, new Pawn(29, Colour.WHITE));
+        Board.setSquare(29, new Queen(29, Colour.BLACK));
         /*
         /*
         for (int i = 0; i < 64; ++i) {
@@ -41,7 +42,15 @@ public class Chess
         }
         */
         Board.printBoard();
-        System.out.println(Board.getSquare(36).getPossibleSquares().toString());
+        //System.out.println(Board.getSquare(36).getPossibleSquares().toString());
+        System.out.println("White pieces: ");
+        for (Piece p : Board.whitePieces) {
+            System.out.println(p.getPieceType().toString() + " at " + p.getSquare());
+        }
+        System.out.println("Black pieces:");
+        for (Piece p : Board.blackPieces) {
+            System.out.println(p.getPieceType().toString() + " at " + p.getSquare());
+        }
         //System.out.println(Board.getSquare(52).getPossibleSquares().toString());
         /*
         System.out.println(Board.pieceCanMove(25, Board.getSquare(24).getColour()));
