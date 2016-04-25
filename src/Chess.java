@@ -22,7 +22,7 @@ public class Chess
         */
         //FEN.initBoardFromFEN("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR");
         FEN.initBoardFromFEN("8/8/8/8/8/8/8/8");
-        Board.setSquare(36, new Queen(36, Colour.WHITE));
+        Board.setSquare(36, new King(36, Colour.WHITE));
 
         Board.setSquare(44, new Pawn(44, Colour.WHITE));
         Board.setSquare(45, new Pawn(45, Colour.BLACK));
