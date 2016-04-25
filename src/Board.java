@@ -1,8 +1,5 @@
 import java.util.ArrayList;
-
-/**
- * Created by johnsardo on 2016-04-15.
- */
+import java.util.Collection;
 
 /*
 56 57 58 59 60 61 62 63
@@ -71,30 +68,38 @@ public class Board
         return isValid(square) && (isEmptySquare(square) || getSquare(square).getColour() != c);
     }
 
-    // TODO: implement
-    // return true if c is in check; false otherwise
-    /*
     public static boolean positionIsInCheck(Colour c)
     {
-        boolean inCheck = false;
+        return (c == Colour.WHITE) ? kingIsAttackedBy(blackPieces) : kingIsAttackedBy(whitePieces);
     }
-    */
+
+    private static boolean kingIsAttackedBy(Collection<Piece> pieces)
+    {
+        for (Piece p : pieces) {
+            for (int square : p.getPossibleSquares()) {
+                if (getSquare(square).getPieceType() == PieceType.KING) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
     public static boolean isValid(int s) { return (0 <= s && s < 64); }
 
     public static void printBoard()
     {
-        System.out.println("  |---------------|");
+        System.out.println("  |-------------------------------|");
         for (int i = 7; i >= 0; --i) {
             System.out.print(i+1);
             System.out.print(" |");
             for (int j = 0; j < 8; ++j) {
-                System.out.print(getSquare(i*8 + j).getAbbrev());
-                System.out.print("|");
+                System.out.print(" " + getSquare(i*8 + j).getAbbrev());
+                System.out.print(" |");
             }
             System.out.println();
-            System.out.println("  |---------------|");
+            System.out.println("  |-------------------------------|");
         }
-        System.out.println("   a b c d e f g h");
+        System.out.println("    a   b   c   d   e   f   g   h");
     }
 }

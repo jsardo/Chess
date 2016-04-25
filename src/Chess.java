@@ -23,15 +23,11 @@ public class Chess
         //FEN.initBoardFromFEN("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR");
         FEN.initBoardFromFEN("8/8/8/8/8/8/8/8");
         Board.setSquare(36, new King(36, Colour.WHITE));
+        Board.setSquare(28, new Pawn(28, Colour.BLACK));
+        Board.setSquare(12, new Rook(12, Colour.BLACK));
+        Board.setSquare(50, new Bishop(50, Colour.BLACK));
+        System.out.println(Board.positionIsInCheck(Colour.WHITE));
 
-        Board.setSquare(44, new Pawn(44, Colour.WHITE));
-        Board.setSquare(45, new Pawn(45, Colour.BLACK));
-        Board.setSquare(43, new Pawn(43, Colour.WHITE));
-        Board.setSquare(35, new Pawn(35, Colour.WHITE));
-        Board.setSquare(27, new Pawn(27, Colour.WHITE));
-        Board.setSquare(28, new Pawn(28, Colour.WHITE));
-        Board.setSquare(29, new Pawn(29, Colour.WHITE));
-        Board.setSquare(29, new Queen(29, Colour.BLACK));
         /*
         /*
         for (int i = 0; i < 64; ++i) {
