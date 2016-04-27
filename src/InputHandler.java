@@ -6,6 +6,7 @@ public class InputHandler
 {
     private Scanner scanner = new Scanner(System.in);
     private String input;
+    private char startRank, endRank, startFile, endFile;
     private int startSquare, endSquare;
 
     public boolean readLine(String msg)
@@ -16,23 +17,22 @@ public class InputHandler
         return inputIsValid();
     }
 
-    public Piece getPieceFromInput()
-    {
-        return null;
-    }
-
     private boolean inputIsValid()
     {
         if (input == null) {
-            System.out.println("error: null string");
+            System.out.println("error: null string in inputIsValid()");
             System.exit(0);
         }
         if (input.length() != 4) {
             printErrorMsg();
             return false;
         }
-        char startFile = Character.toLowerCase(input.charAt(0)), endFile = Character.toLowerCase(input.charAt(2)),
-                startRank = input.charAt(1), endRank = input.charAt(3);
+        startFile = Character.toLowerCase(input.charAt(0));
+        endFile = Character.toLowerCase(input.charAt(2));
+        startRank = input.charAt(1);
+        endRank = input.charAt(3);
+        startSquare = squareFromChars(startFile, startRank);
+        endSquare = squareFromChars(endFile, endRank);
 
         if (('a' <= startFile && startFile <= 'h') && ('a' <= endFile && endFile <= 'h')
                 && ('1' <= startRank && startRank <= '8') && ('1' <= endRank && endRank <= '8')
@@ -44,7 +44,20 @@ public class InputHandler
         }
     }
 
-    // TODO: compute startSquare and endSquare based on file and rank
+    private int squareFromChars(char file, char rank)
+    {
+        return Character.getNumericValue(file) + 8*(Character.getNumericValue(rank)-1) - 10;
+    }
+
+    public Piece getStartPiece()
+    {
+        return Board.getSquare(startSquare);
+    }
+
+    public Piece getEndPiece()
+    {
+        return Board.getSquare(endSquare);
+    }
 
     private void printErrorMsg()
     {

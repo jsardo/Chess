@@ -11,6 +11,8 @@ import java.util.Collection;
  8  9 10 11 12 13 14 15
  0  1  2  3  4  5  6  7
  */
+
+// TODO: detect checkmate
 public class Board
 {
     private static Piece[] board = new Piece[64];
@@ -56,6 +58,32 @@ public class Board
             }
         } else {
             System.out.println("error: in setSquare(): invalid square");
+            System.exit(0);
+        }
+    }
+
+    public static void addPiece(Piece p)
+    {
+        int s = p.getSquare();
+
+        Piece pieceAtSquare;
+        if (isValid(s)) {
+            pieceAtSquare = getSquare(s);
+            if (pieceAtSquare != null && !isEmptySquare(s)) {
+                if (pieceAtSquare.getColour() == Colour.WHITE) {
+                    whitePieces.remove(pieceAtSquare);
+                } else if (pieceAtSquare.getColour() == Colour.BLACK) {
+                    blackPieces.remove(pieceAtSquare);
+                }
+            }
+            board[s] = p;
+            if (p.getColour() == Colour.WHITE) {
+                whitePieces.add(p);
+            } else if (p.getColour() == Colour.BLACK) {
+                blackPieces.add(p);
+            }
+        } else {
+            System.out.println("error: in addPiece(): invalid square");
             System.exit(0);
         }
     }

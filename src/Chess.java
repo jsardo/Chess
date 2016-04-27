@@ -26,24 +26,32 @@ public class Chess
     }
     public static void twoPlayerGame()
     {
-        /*
         Colour turn = Colour.WHITE;
         InputHandler handler = new InputHandler();
-        //String input;
-        Piece p;
-        int endSquare;
+        Piece startPiece, endPiece;
 
         initDefaultBoard();
 
+        Board.printBoard();
         while (!Board.positionIsInCheck(turn)) {
             handler.readLine("Enter a move for " + turn.toString());
-            p = handler.getPieceFromInput();
-            endSquare = handler.getSquareFromInput();
+            startPiece = handler.getStartPiece();
+            endPiece = handler.getEndPiece();
+            if (startPiece.getPieceType() == PieceType.EMPTY) {
+                System.out.println("starting square is empty");
+                continue;
+            }
+            if (!startPiece.getPossibleSquares().contains(endPiece.getSquare()))
+            if (startPiece.getColour() == endPiece.getColour()) {
+                System.out.println("can't move a piece to a square occupied by a piece of the same colour");
+                continue;
+            }
 
-
-            //switch turns
+            // TODO: remove piece it was on
+            startPiece.setSquare(endPiece.getSquare());
+            Board.addPiece(startPiece);
+            Board.printBoard();
+            turn = (turn == Colour.WHITE) ? Colour.BLACK : Colour.WHITE;
         }
-        */
-
     }
 }

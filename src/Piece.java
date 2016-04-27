@@ -24,6 +24,9 @@ public abstract class Piece {
     public PieceType getPieceType() { return type; }
     public Colour getColour() { return colour; }
 
+
+    public void setSquare(int square) { this.square = square; }
+
     public abstract ArrayList<Integer> getPossibleSquares();
 }
 
