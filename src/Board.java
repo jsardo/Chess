@@ -62,6 +62,32 @@ public class Board
         }
     }
 
+    /*
+    move piece p to square s. remove p from its list white/black pieces. remove piece at endsquare from white/black
+    piece list.
+     */
+    public static void movePieceToSquare(Piece p, int s)
+    {
+        Piece pieceAtSquare;
+
+        if (isValid(s)) {
+            pieceAtSquare = getSquare(s);
+            if (pieceAtSquare != null && !isEmptySquare(s)) {
+                if (pieceAtSquare.getColour() == Colour.WHITE) {
+                    whitePieces.remove(pieceAtSquare);
+                } else if (pieceAtSquare.getColour() == Colour.BLACK) {
+                    blackPieces.remove(pieceAtSquare);
+                }
+            }
+            board[s] = p;
+            board[p.getSquare()] = new EmptyPiece(p.getSquare());
+            p.setSquare(s);
+        } else {
+            System.out.println("error: in addPiece(): invalid square");
+            System.exit(0);
+        }
+    }
+
     public static void addPiece(Piece p)
     {
         int s = p.getSquare();
@@ -117,6 +143,7 @@ public class Board
 
     public static void printBoard()
     {
+        System.out.println("    a   b   c   d   e   f   g   h");
         System.out.println("  |-------------------------------|");
         for (int i = 7; i >= 0; --i) {
             System.out.print(i+1);

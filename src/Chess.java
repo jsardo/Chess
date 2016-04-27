@@ -41,15 +41,18 @@ public class Chess
                 System.out.println("starting square is empty");
                 continue;
             }
-            if (!startPiece.getPossibleSquares().contains(endPiece.getSquare()))
+            if (!startPiece.getPossibleSquares().contains(endPiece.getSquare())) {
+                System.out.println("trying to move to an invalid square");
+                continue;
+            }
             if (startPiece.getColour() == endPiece.getColour()) {
                 System.out.println("can't move a piece to a square occupied by a piece of the same colour");
                 continue;
             }
 
-            // TODO: remove piece it was on
-            startPiece.setSquare(endPiece.getSquare());
-            Board.addPiece(startPiece);
+            Board.movePieceToSquare(startPiece, endPiece.getSquare());
+            Test.printWhitePieces();
+            Test.printBlackPieces();
             Board.printBoard();
             turn = (turn == Colour.WHITE) ? Colour.BLACK : Colour.WHITE;
         }
