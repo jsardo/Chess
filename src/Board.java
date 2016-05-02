@@ -15,12 +15,17 @@ import java.util.Collection;
 // TODO: detect checkmate
 public class Board
 {
-    private static Piece[] board = new Piece[64];
+    private Piece[] board = new Piece[64];
 
-    public static ArrayList<Piece> whitePieces = new ArrayList<>();
-    public static ArrayList<Piece> blackPieces = new ArrayList<>();
+    public ArrayList<Piece> whitePieces = new ArrayList<>();
+    public ArrayList<Piece> blackPieces = new ArrayList<>();
 
-    public static Piece getSquare(int square)
+    public Board(String fenString)
+    {
+        initBoardFromFEN(fenString);
+    }
+
+    public Piece getSquare(int square)
     {
         if (square >= 0 && square < 64) {
             return board[square];
@@ -32,13 +37,13 @@ public class Board
         }
     }
 
-    public static boolean isEmptySquare(int square)
+    public boolean isEmptySquare(int square)
     {
         return (isValid(square) && (getSquare(square).getPieceType() == PieceType.EMPTY));
     }
 
 
-    public static void setSquare(int s, Piece p)
+    public void setSquare(int s, Piece p)
     {
         Piece pieceAtSquare;
         if (isValid(s)) {
@@ -66,7 +71,7 @@ public class Board
     move piece p to square s. remove p from its list white/black pieces. remove piece at endsquare from white/black
     piece list.
      */
-    public static void movePieceToSquare(Piece p, int s)
+    public void movePieceToSquare(Piece p, int s)
     {
         Piece pieceAtSquare;
 
@@ -88,7 +93,7 @@ public class Board
         }
     }
 
-    public static void addPiece(Piece p)
+    public void addPiece(Piece p)
     {
         int s = p.getSquare();
 
@@ -117,20 +122,20 @@ public class Board
     /*
     return true if the square is nonempty or occupied by a piece of the opposite colour; false otherwise
      */
-    public static boolean pieceCanMove(int square, Colour c)
+    public boolean pieceCanMove(int square, Colour c)
     {
         return isValid(square) && (isEmptySquare(square) || getSquare(square).getColour() != c);
     }
 
-    public static boolean positionIsInCheck(Colour c)
+    public boolean positionIsInCheck(Colour c)
     {
         return (c == Colour.WHITE) ? kingIsAttackedBy(blackPieces) : kingIsAttackedBy(whitePieces);
     }
 
-    private static boolean kingIsAttackedBy(Collection<Piece> pieces)
+    private boolean kingIsAttackedBy(Collection<Piece> pieces)
     {
         for (Piece p : pieces) {
-            for (int square : p.getPossibleSquares()) {
+            for (int square : p.getPossibleSquares(this)) {
                 if (getSquare(square).getPieceType() == PieceType.KING) {
                     return true;
                 }
@@ -141,7 +146,7 @@ public class Board
 
     public static boolean isValid(int s) { return (0 <= s && s < 64); }
 
-    public static void printBoard()
+    public void printBoard()
     {
         System.out.println("    a   b   c   d   e   f   g   h");
         System.out.println("  |-------------------------------|");
@@ -156,5 +161,70 @@ public class Board
             System.out.println("  |-------------------------------|");
         }
         System.out.println("    a   b   c   d   e   f   g   h");
+    }
+
+    private void initBoardFromFEN(String fen)
+    {
+        if (fen == null) {
+            System.out.println("error: invalid FEN string");
+            System.exit(0);
+        }
+
+        int counter = 0, index = 0, intVal;
+        char current;
+
+        while (counter < 64) {
+            current = fen.charAt(index);
+            if ('1' <= current && current <= '8') {
+                intVal = Character.getNumericValue(current);
+                for (int i = 0; i < intVal; ++i) {
+                    setSquare(counter, new EmptyPiece(counter));
+                    counter++;
+                }
+            } else {
+                addToBoardByChar(current, counter);
+                counter++;
+                if (current == '/') counter--;
+            }
+            index++;
+        }
+    }
+    private void addToBoardByChar(char piece, int count)
+    {
+        char lowerPiece = Character.toLowerCase(piece);
+        Colour c;
+        c = (piece == lowerPiece) ? Colour.WHITE : Colour.BLACK;
+
+        switch (lowerPiece) {
+            case 'r':
+                setSquare(count, new Rook(count, c));
+                break;
+            case 'n':
+                setSquare(count, new Knight(count, c));
+                break;
+            case 'b':
+                setSquare(count, new Bishop(count, c));
+                break;
+            case 'q':
+                setSquare(count, new Queen(count, c));
+                break;
+            case 'k':
+                setSquare(count, new King(count, c));
+                break;
+            case 'p':
+                setSquare(count, new Pawn(count, c));
+                break;
+            case '/':
+                // TODO: make better
+                if ((count + 0) % 8 != 0) {
+                    System.out.println("error: unexpected \'/\' in your FEN file");
+                    System.exit(0);
+                }
+                break;
+            default:
+                // TODO: make this better
+                System.out.println("error: the character " + piece + " is in the FEN but it shouldn't be");
+                System.exit(0);
+        }
     }
 }

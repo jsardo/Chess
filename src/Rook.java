@@ -11,7 +11,7 @@ public class Rook extends Piece
         super(square, PieceType.ROOK, c);
     }
 
-    public ArrayList<Integer> getPossibleSquares()
+    public ArrayList<Integer> getPossibleSquares(Board board)
     {
         ArrayList<Integer> possibleSquares = new ArrayList<>();
         int currentSquare = getSquare();
@@ -20,8 +20,8 @@ public class Rook extends Piece
         // TODO: make those loops like those Bishop.java because i'm stupid
         currentSquare += 8;
         while (currentSquare < 64) {
-            if (Board.pieceCanMove(currentSquare, c)) {
-                if (Board.isEmptySquare(currentSquare)) {
+            if (board.pieceCanMove(currentSquare, c)) {
+                if (board.isEmptySquare(currentSquare)) {
                     possibleSquares.add(currentSquare);
                 } else {
                     possibleSquares.add(currentSquare);
@@ -35,8 +35,8 @@ public class Rook extends Piece
 
         currentSquare = getSquare() - 8;
         while (currentSquare >= 0) {
-            if (Board.pieceCanMove(currentSquare, c)) {
-                if (Board.isEmptySquare(currentSquare)) {
+            if (board.pieceCanMove(currentSquare, c)) {
+                if (board.isEmptySquare(currentSquare)) {
                     possibleSquares.add(currentSquare);
                 } else {
                     possibleSquares.add(currentSquare);
@@ -50,8 +50,8 @@ public class Rook extends Piece
         int lower = (getSquare()/8)*8, upper = lower + 8;
         currentSquare = getSquare()+1;
         while (currentSquare < upper) {
-            if (Board.pieceCanMove(currentSquare, c)) {
-                if (Board.isEmptySquare(currentSquare)) {
+            if (board.pieceCanMove(currentSquare, c)) {
+                if (board.isEmptySquare(currentSquare)) {
                     possibleSquares.add(currentSquare);
                 } else {
                     possibleSquares.add(currentSquare);
@@ -64,8 +64,8 @@ public class Rook extends Piece
         }
         currentSquare = getSquare()-1;
         while (currentSquare >= lower) {
-            if (Board.pieceCanMove(currentSquare, c)) {
-                if (Board.isEmptySquare(currentSquare)) {
+            if (board.pieceCanMove(currentSquare, c)) {
+                if (board.isEmptySquare(currentSquare)) {
                     possibleSquares.add(currentSquare);
                 } else {
                     possibleSquares.add(currentSquare);

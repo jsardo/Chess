@@ -1,6 +1,3 @@
-/**
- * Created by johnsardo on 2016-04-15.
- */
 import java.util.ArrayList;
 
 public class Knight extends Piece
@@ -10,7 +7,7 @@ public class Knight extends Piece
         super(square, PieceType.KNIGHT, c);
     }
 
-    public ArrayList<Integer> getPossibleSquares()
+    public ArrayList<Integer> getPossibleSquares(Board board)
     {
         ArrayList<Integer> squares = new ArrayList<>();
         ArrayList<Integer> potential = new ArrayList<>();
@@ -33,7 +30,7 @@ public class Knight extends Piece
         }
 
         for (int sq : potential) {
-            if (Board.pieceCanMove(sq, getColour())) {
+            if (board.pieceCanMove(sq, getColour())) {
                 squares.add(sq);
             }
         }

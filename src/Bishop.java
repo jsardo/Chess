@@ -7,15 +7,15 @@ public class Bishop extends Piece
         super(square, PieceType.BISHOP, c);
     }
 
-    public ArrayList<Integer> getPossibleSquares()
+    public ArrayList<Integer> getPossibleSquares(Board board)
     {
         ArrayList<Integer> possibleSquares = new ArrayList<>();
         int currentSquare = getSquare();
         Colour c = getColour();
 
         // up-right diagonal
-        while (currentSquare % 8 < 7 && Board.pieceCanMove(currentSquare + 9, c)) {
-            if (Board.isEmptySquare(currentSquare + 9)) {
+        while (currentSquare % 8 < 7 && board.pieceCanMove(currentSquare + 9, c)) {
+            if (board.isEmptySquare(currentSquare + 9)) {
                 possibleSquares.add(currentSquare+9);
             } else {
                 possibleSquares.add(currentSquare+9);
@@ -26,8 +26,8 @@ public class Bishop extends Piece
 
         // up-left diagonal
         currentSquare = getSquare();
-        while (currentSquare % 8 > 0 && Board.pieceCanMove(currentSquare + 7, c)) {
-            if (Board.isEmptySquare(currentSquare + 7)) {
+        while (currentSquare % 8 > 0 && board.pieceCanMove(currentSquare + 7, c)) {
+            if (board.isEmptySquare(currentSquare + 7)) {
                 possibleSquares.add(currentSquare + 7);
             } else {
                 possibleSquares.add(currentSquare+7);
@@ -38,8 +38,8 @@ public class Bishop extends Piece
 
         // down-left diagonal
         currentSquare = getSquare();
-        while (currentSquare % 8 > 0 && Board.pieceCanMove(currentSquare - 9, c)) {
-            if (Board.isEmptySquare(currentSquare - 9)) {
+        while (currentSquare % 8 > 0 && board.pieceCanMove(currentSquare - 9, c)) {
+            if (board.isEmptySquare(currentSquare - 9)) {
                 possibleSquares.add(currentSquare - 9);
             } else {
                 possibleSquares.add(currentSquare-9);
@@ -50,8 +50,8 @@ public class Bishop extends Piece
 
         // down-right diagonal
         currentSquare = getSquare();
-        while (currentSquare % 8 < 7 && Board.pieceCanMove(currentSquare - 7, c)) {
-            if (Board.isEmptySquare(currentSquare - 7)) {
+        while (currentSquare % 8 < 7 && board.pieceCanMove(currentSquare - 7, c)) {
+            if (board.isEmptySquare(currentSquare - 7)) {
                 possibleSquares.add(currentSquare - 7);
             } else {
                 possibleSquares.add(currentSquare-7);

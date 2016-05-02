@@ -1,8 +1,5 @@
 import java.util.ArrayList;
 
-/**
- * Created by johnsardo on 2016-04-15.
- */
 public abstract class Piece {
     private int square;
     private ArrayList<Piece> attacking;
@@ -27,7 +24,7 @@ public abstract class Piece {
 
     public void setSquare(int square) { this.square = square; }
 
-    public abstract ArrayList<Integer> getPossibleSquares();
+    public abstract ArrayList<Integer> getPossibleSquares(Board board);
 }
 
 

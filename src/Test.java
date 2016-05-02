@@ -1,22 +1,22 @@
-/**
- * Created by johnsardo on 2016-04-17.
- */
 public class Test {
-    public static void main(String[] args)
+    static int squareFromChars(char file, char rank)
     {
-        int[] test = {0,2,3};
-        for (int i : test) {
-            System.out.println(i);
+        return Character.getNumericValue(file) + 8*(Character.getNumericValue(rank)-1) - 10;
+    }
+
+    public static void printWhitePieces(Board board)
+    {
+        System.out.println("PRINTING WHITE PIECES");
+        for (Piece p : board.whitePieces) {
+            System.out.println(p.getPieceType().toString() + " at " + p.getSquare());
         }
     }
-}
+    public static void printBlackPieces(Board board)
+    {
+        System.out.println("PRINTING BLACK PIECES");
+        for (Piece p : board.blackPieces) {
+            System.out.println(p.getPieceType().toString() + " at " + p.getSquare());
+        }
+    }
 
-enum TestEnum
-{
-    FOO("F"), BAR("B");
-
-    private String abbreviation;
-    TestEnum(String abbreviation) { this.abbreviation = abbreviation; }
-
-    String getAbbreviation() { return abbreviation; }
 }

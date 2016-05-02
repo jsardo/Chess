@@ -7,13 +7,13 @@ public class King extends Piece
         super(square, PieceType.KING, c);
     }
 
-    public ArrayList<Integer> getPossibleSquares()
+    public ArrayList<Integer> getPossibleSquares(Board board)
     {
         ArrayList<Integer> possibleSquares = new ArrayList<>();
         int[] increments = {-9, -8, -7, -1, 1, 7, 8, 9};
 
         for (int inc : increments) {
-            if (Board.pieceCanMove(getSquare() + inc, getColour())) {
+            if (board.pieceCanMove(getSquare() + inc, getColour())) {
                 possibleSquares.add(getSquare() + inc);
             }
         }

@@ -7,12 +7,12 @@ public class Queen extends Piece
         super(square, PieceType.QUEEN, c);
     }
 
-    public ArrayList<Integer> getPossibleSquares()
+    public ArrayList<Integer> getPossibleSquares(Board board)
     {
         ArrayList<Integer> possibleSquares = new ArrayList<Integer>();
 
-        possibleSquares.addAll((new Rook(getSquare(), getColour())).getPossibleSquares());
-        possibleSquares.addAll((new Bishop(getSquare(), getColour())).getPossibleSquares());
+        possibleSquares.addAll((new Rook(getSquare(), getColour())).getPossibleSquares(board));
+        possibleSquares.addAll((new Bishop(getSquare(), getColour())).getPossibleSquares(board));
 
         return possibleSquares;
     }

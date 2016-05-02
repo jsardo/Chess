@@ -49,14 +49,14 @@ public class InputHandler
         return Character.getNumericValue(file) + 8*(Character.getNumericValue(rank)-1) - 10;
     }
 
-    public Piece getStartPiece()
+    public Piece getStartPiece(Board board)
     {
-        return Board.getSquare(startSquare);
+        return board.getSquare(startSquare);
     }
 
-    public Piece getEndPiece()
+    public Piece getEndPiece(Board board)
     {
-        return Board.getSquare(endSquare);
+        return board.getSquare(endSquare);
     }
 
     private void printErrorMsg()

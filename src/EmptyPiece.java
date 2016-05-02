@@ -1,6 +1,3 @@
-/**
- * Created by johnsardo on 2016-04-17.
- */
 import java.util.ArrayList;
 
 public class EmptyPiece extends Piece
@@ -10,5 +7,5 @@ public class EmptyPiece extends Piece
         super(square, PieceType.EMPTY, null);
     }
 
-    public ArrayList<Integer> getPossibleSquares() { return null; }
+    public ArrayList<Integer> getPossibleSquares(Board board) { return null; }
 }

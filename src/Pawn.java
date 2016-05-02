@@ -7,7 +7,7 @@ public class Pawn extends Piece
         super(square, PieceType.PAWN, c);
     }
 
-    public ArrayList<Integer> getPossibleSquares()
+    public ArrayList<Integer> getPossibleSquares(Board board)
     {
         ArrayList<Integer> possibleSquares = new ArrayList<>();
         int factor = (getColour() == Colour.WHITE) ? 1 : -1; // move forward if white, backward if black
@@ -15,18 +15,18 @@ public class Pawn extends Piece
         int[] diagonals = {7, 9};
 
 
-        if (Board.isEmptySquare(currentSquare + factor*8)) {
+        if (board.isEmptySquare(currentSquare + factor*8)) {
             possibleSquares.add(currentSquare + factor*8);
             // jump ahead two if on the second rank
-            if (Board.isEmptySquare(currentSquare + 2*factor*8) && (currentSquare / 8 * 8 == secondRank)) {
+            if (board.isEmptySquare(currentSquare + 2*factor*8) && (currentSquare / 8 * 8 == secondRank)) {
                 possibleSquares.add(currentSquare + 2*factor*8);
             }
         }
 
         for (int inc : diagonals)  {
             potentialSquare = currentSquare + factor*inc;
-            if (Board.isValid(potentialSquare) && !Board.isEmptySquare(potentialSquare) &&
-                    Board.getSquare(potentialSquare).getColour() != getColour()) {
+            if (board.isValid(potentialSquare) && !board.isEmptySquare(potentialSquare) &&
+                    board.getSquare(potentialSquare).getColour() != getColour()) {
                 possibleSquares.add(potentialSquare);
             }
         }
