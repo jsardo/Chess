@@ -12,7 +12,6 @@ import java.util.Collection;
  0  1  2  3  4  5  6  7
  */
 
-// TODO: detect checkmate
 public class Board
 {
     private Piece[] board = new Piece[64];
@@ -24,6 +23,8 @@ public class Board
     {
         initBoardFromFEN(fenString);
     }
+
+    public Board() { }
 
     public Piece getSquare(int square)
     {
@@ -93,32 +94,6 @@ public class Board
         }
     }
 
-    public void addPiece(Piece p)
-    {
-        int s = p.getSquare();
-
-        Piece pieceAtSquare;
-        if (isValid(s)) {
-            pieceAtSquare = getSquare(s);
-            if (pieceAtSquare != null && !isEmptySquare(s)) {
-                if (pieceAtSquare.getColour() == Colour.WHITE) {
-                    whitePieces.remove(pieceAtSquare);
-                } else if (pieceAtSquare.getColour() == Colour.BLACK) {
-                    blackPieces.remove(pieceAtSquare);
-                }
-            }
-            board[s] = p;
-            if (p.getColour() == Colour.WHITE) {
-                whitePieces.add(p);
-            } else if (p.getColour() == Colour.BLACK) {
-                blackPieces.add(p);
-            }
-        } else {
-            System.out.println("error: in addPiece(): invalid square");
-            System.exit(0);
-        }
-    }
-
     /*
     return true if the square is nonempty or occupied by a piece of the opposite colour; false otherwise
      */
@@ -142,6 +117,52 @@ public class Board
             }
         }
         return false;
+    }
+
+    // true if c is in checkmate; false otherwise
+    public boolean inCheckmate(Colour c)
+    {
+        Piece king = getKing(c);
+        ArrayList<Integer> squares = king.getPossibleSquares(this);
+        Board newBoard;
+
+        for (int sq : squares) {
+            newBoard = copyBoard(this);
+            newBoard.movePieceToSquare(newBoard.getKing(c), sq);
+            newBoard.printBoard();
+            if (!newBoard.positionIsInCheck(c))
+                return false;
+        }
+        return true;
+    }
+
+    private Piece getKing(Colour c)
+    {
+        ArrayList<Piece> pieces = c == Colour.WHITE ? whitePieces : blackPieces;
+
+        for (Piece p : pieces) {
+            if (p.getPieceType() == PieceType.KING)
+                return p;
+        }
+        System.out.println("error: no king in the list of pieces.");
+        return null;
+    }
+
+    public Board copyBoard(Board board)
+    {
+        Board newBoard = new Board();
+        Piece p;
+
+        for (int i = 0; i < 64; ++i) {
+            p = board.getSquare(i);
+            newBoard.setSquare(i, p);
+            if (p.getColour() == Colour.WHITE) {
+                newBoard.whitePieces.add(p.copyPiece());
+            } else if (p.getColour() == Colour.BLACK) {
+                newBoard.blackPieces.add(p.copyPiece());
+            }
+        }
+        return newBoard;
     }
 
     public static boolean isValid(int s) { return (0 <= s && s < 64); }
@@ -216,7 +237,7 @@ public class Board
                 break;
             case '/':
                 // TODO: make better
-                if ((count + 0) % 8 != 0) {
+                if ((count) % 8 != 0) {
                     System.out.println("error: unexpected \'/\' in your FEN file");
                     System.exit(0);
                 }

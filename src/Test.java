@@ -1,4 +1,15 @@
+import java.util.ArrayList;
+
 public class Test {
+    public static void main(String args)
+    {
+        Bar a = new Bar();
+        Bar b = new Bar();
+
+        a.foo.add(2);
+        a.a = 3;
+
+    }
     static int squareFromChars(char file, char rank)
     {
         return Character.getNumericValue(file) + 8*(Character.getNumericValue(rank)-1) - 10;
@@ -18,5 +29,9 @@ public class Test {
             System.out.println(p.getPieceType().toString() + " at " + p.getSquare());
         }
     }
-
+}
+class Bar
+{
+    public ArrayList<Integer> foo;
+    public int a;
 }

@@ -21,6 +21,27 @@ public abstract class Piece {
     public PieceType getPieceType() { return type; }
     public Colour getColour() { return colour; }
 
+    public Piece copyPiece()
+    {
+        switch (type) {
+            case BISHOP:
+                return new Bishop(square, colour);
+            case KNIGHT:
+                return new Knight(square, colour);
+            case ROOK:
+                return new Rook(square, colour);
+            case KING:
+                return new King(square, colour);
+            case QUEEN:
+                return new Queen(square, colour);
+            case PAWN:
+                return new Pawn(square, colour);
+            case EMPTY:
+                return new EmptyPiece(square);
+        }
+        System.out.println("error: bad piece in copyPiece");
+        return null;
+    }
 
     public void setSquare(int square) { this.square = square; }
 
