@@ -46,6 +46,11 @@ public abstract class Piece {
     public void setSquare(int square) { this.square = square; }
 
     public abstract ArrayList<Integer> getPossibleSquares(Board board);
+
+    public void printPieceInfo()
+    {
+        System.out.println("Type: " + type.toString() + " colour: " + colour.toString() + " square: " + square);
+    }
 }
 
 

@@ -16,13 +16,6 @@ public class Chess
     public static void main(String[] args)
     {
         twoPlayerGame();
-        /*
-        Board board = new Board("8/8/8/8/8/8/8/8");
-        board.setSquare(35, new King(35, Colour.WHITE));
-        board.setSquare(19, new Queen(19, Colour.BLACK));
-        board.printBoard();
-        System.out.println(board.inCheckmate(Colour.WHITE));
-        */
     }
 
     public static void twoPlayerGame()

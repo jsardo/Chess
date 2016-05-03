@@ -122,7 +122,7 @@ public class Board
     // true if c is in checkmate; false otherwise
     public boolean inCheckmate(Colour c)
     {
-        Piece king = getKing(c);
+        Piece king = getKing(c), newKing;
         ArrayList<Integer> squares = king.getPossibleSquares(this);
         Board newBoard;
 
@@ -155,7 +155,7 @@ public class Board
 
         for (int i = 0; i < 64; ++i) {
             p = board.getSquare(i);
-            newBoard.setSquare(i, p);
+            newBoard.setSquare(i, p.copyPiece());
             if (p.getColour() == Colour.WHITE) {
                 newBoard.whitePieces.add(p.copyPiece());
             } else if (p.getColour() == Colour.BLACK) {
