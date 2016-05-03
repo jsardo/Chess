@@ -1,6 +1,3 @@
-/**
- * Created by johnsardo on 2016-04-15.
- */
 public enum PieceType {
     PAWN("P"), ROOK("R"), KNIGHT("N"), BISHOP("B"), KING("K"), QUEEN("Q"), EMPTY(" ");
 

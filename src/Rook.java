@@ -1,7 +1,3 @@
-/**
- * Created by johnsardo on 2016-04-15.
- */
-
 import java.util.ArrayList;
 
 public class Rook extends Piece
@@ -76,7 +72,6 @@ public class Rook extends Piece
             }
             currentSquare--;
         }
-
         return possibleSquares;
     }
 }

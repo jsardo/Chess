@@ -63,8 +63,4 @@ public class InputHandler
     {
         System.out.println("invalid input! specify start and end square. eg: a4b5");
     }
-
-
-
-
 }

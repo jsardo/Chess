@@ -52,9 +52,3 @@ public abstract class Piece {
         System.out.println("Type: " + type.toString() + " colour: " + colour.toString() + " square: " + square);
     }
 }
-
-
-
-
-
-

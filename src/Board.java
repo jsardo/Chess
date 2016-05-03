@@ -126,6 +126,10 @@ public class Board
         ArrayList<Integer> squares = king.getPossibleSquares(this);
         Board newBoard;
 
+        if (!positionIsInCheck(c)) {
+            return false;
+        }
+
         for (int sq : squares) {
             newBoard = copyBoard(this);
             newBoard.movePieceToSquare(newBoard.getKing(c), sq);
@@ -163,6 +167,18 @@ public class Board
             }
         }
         return newBoard;
+    }
+
+    // c has no moves
+    public boolean isStalemate(Colour c)
+    {
+        ArrayList<Piece> pieces = c == Colour.WHITE ? whitePieces : blackPieces;
+        for (Piece p : pieces) {
+            if (!p.getPossibleSquares(this).isEmpty()) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public static boolean isValid(int s) { return (0 <= s && s < 64); }
@@ -236,14 +252,12 @@ public class Board
                 setSquare(count, new Pawn(count, c));
                 break;
             case '/':
-                // TODO: make better
                 if ((count) % 8 != 0) {
                     System.out.println("error: unexpected \'/\' in your FEN file");
                     System.exit(0);
                 }
                 break;
             default:
-                // TODO: make this better
                 System.out.println("error: the character " + piece + " is in the FEN but it shouldn't be");
                 System.exit(0);
         }

@@ -14,7 +14,6 @@ public class Pawn extends Piece
         int currentSquare = getSquare(), potentialSquare, secondRank = (getColour() == Colour.WHITE ? 8 : 48);
         int[] diagonals = {7, 9};
 
-
         if (board.isEmptySquare(currentSquare + factor*8)) {
             possibleSquares.add(currentSquare + factor*8);
             // jump ahead two if on the second rank
