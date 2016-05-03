@@ -1,4 +1,3 @@
 # Chess
-a chess engine
 
-an (incomplete) implementation of chess with position evaluation (hopefully) coming soon
+An implementation of two-player chess. Working on evaluation now.
