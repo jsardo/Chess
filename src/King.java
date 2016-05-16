@@ -1,22 +1,19 @@
 import java.util.ArrayList;
 
-public class King extends Piece
-{
-    public King(int square, Colour c)
-    {
-        super(square, PieceType.KING, c);
-    }
+public class King extends Piece {
+  public King(int square, Colour c) {
+    super(square, PieceType.KING, c);
+  }
 
-    public ArrayList<Integer> getPossibleSquares(Board board)
-    {
-        ArrayList<Integer> possibleSquares = new ArrayList<>();
-        int[] increments = {-9, -8, -7, -1, 1, 7, 8, 9};
+  public ArrayList<Integer> getPossibleSquares(Board board) {
+    ArrayList<Integer> possibleSquares = new ArrayList<>();
+    int[] increments = {-9, -8, -7, -1, 1, 7, 8, 9};
 
-        for (int inc : increments) {
-            if (board.pieceCanMove(getSquare() + inc, getColour())) {
-                possibleSquares.add(getSquare() + inc);
-            }
-        }
-        return possibleSquares;
+    for (int inc : increments) {
+      if (board.pieceCanMove(getSquare() + inc, getColour())) {
+        possibleSquares.add(getSquare() + inc);
+      }
     }
+    return possibleSquares;
+  }
 }
